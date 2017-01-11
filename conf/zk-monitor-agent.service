@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor agent for ZooKeeper
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/opt/zk-monitor-agent
+PIDFile=/var/run/zk-monitor-agent/zk-monitor-agent.pid
+ExecStart=/opt/zk-monitor-agent/server.sh start
+ExecReload=/opt/zk-monitor-agent/server.sh restart
+ExecStop=/opt/zk-monitor-agent/server.sh stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
